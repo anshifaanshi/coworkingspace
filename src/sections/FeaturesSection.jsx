@@ -4,6 +4,13 @@ import { featuresData } from "../data/features";
 import SectionTitle from "../components/SectionTitle";
 
 export default function FeaturesSection() {
+    const coworkingHighlights = [
+        "More Than a Desk. A Community.",
+        "Connect. Create. Collaborate.",
+        "Built for Growth.",
+        "Where Work Meets Inspiration."
+    ];
+
     return (
         <div id="features" className="px-4 md:px-16 lg:px-24 xl:px-32">
             <SectionTitle 
@@ -11,6 +18,29 @@ export default function FeaturesSection() {
                 text2="What you get" 
                 text3="Components, patterns and pages — everything you need to ship." 
             />
+
+            {/* Coworking Space Highlights */}
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mt-12"
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 320, damping: 70, mass: 1 }}
+            >
+                {coworkingHighlights.map((highlight, index) => (
+                    <motion.div
+                        key={index}
+                        className="flex items-center justify-center gap-3 px-6 py-4 rounded-lg bg-[#4682B4]/10 border border-[#4682B4]/30 hover:bg-[#4682B4]/20 transition-colors"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
+                    >
+                        <span className="text-[#4682B4] font-bold text-xl">•</span>
+                        <p className="text-slate-200 text-sm font-medium">{highlight}</p>
+                    </motion.div>
+                ))}
+            </motion.div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-4 mt-16 px-6">
                 {featuresData.map((feature, index) => (
